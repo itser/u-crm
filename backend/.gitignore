@@ -1,0 +1,10 @@
+.env
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.snaplet/
+seed.config.ts
+seed.ts
+
+

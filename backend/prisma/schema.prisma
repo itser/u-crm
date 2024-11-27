@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id           Int           @id @default(autoincrement())
+  name         String
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime?     @updatedAt
+  //TODO
+  //@@map("clients")
+}
+
+model Account {
+  id           Int           @id @default(autoincrement())
+  name         String
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime?     @updatedAt
+
+  @@map("accounts")
+}
+
+model Category {
+  id           Int           @id @default(autoincrement())
+  name         String
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime?     @updatedAt
+
+  @@map("categories")
+}
+
+model Transaction {
+  id         Int       @id @default(autoincrement())
+  account    Account?  @relation(fields: [accountId], references: [id])
+  accountId  Int?
+  client     Client?   @relation(fields: [clientId], references: [id])
+  clientId   Int?
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId Int?
+  typeId    Int      @default(1)
+  summ       Decimal   @default(0) @db.Decimal(15, 2)
+  comment    String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt
+
+  @@map("transactions")
+}
