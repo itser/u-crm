@@ -13,6 +13,7 @@ services:
       - /backend/node_modules
     environment:
       - DATABASE_URL=mysql://erp_user:strong_password@db:3306/erp_db
+      - NODE_ENV=production
     depends_on:
       - db
 
@@ -22,7 +23,7 @@ services:
       dockerfile: Dockerfile
     container_name: erp-admin
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - ./admin:/app
       - /app/node_modules

@@ -6,5 +6,6 @@ coverage/
 .snaplet/
 seed.config.ts
 seed.ts
+package-lock.json
 
 

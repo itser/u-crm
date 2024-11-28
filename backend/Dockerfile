@@ -13,8 +13,6 @@ RUN npm install
 # Копіюємо весь код
 COPY . .
 
-RUN npm install -g nodemon
-
 # Генеруємо Prisma клієнт
 RUN npx prisma generate
 
@@ -25,4 +23,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Команда запуску
-CMD ["nodemon", "npm", "run", "start:prod"]
+CMD ["npm", "run", "start:prod"]
